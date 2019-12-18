@@ -3,6 +3,7 @@ import { Menu, Divider } from "semantic-ui-react";
 import SideBarItem from "./SideBarItem/SideBarItem";
 import "./SideBar.scss";
 import SideBarHeader from "./SideBarHeader/SideBarHeader";
+import SideBarFooter from "./SideBarFooter/SideBarFooter";
 import { Subscriptions } from "./Subscriptions/Subscriptions";
 
 export class SideBar extends React.Component {
@@ -18,15 +19,15 @@ export class SideBar extends React.Component {
         <SideBarItem label="Watch later" icon="clock" />
         <SideBarItem label="Liked videos" icon="thumbs up" />
         <Divider />
-        <SideBarHeader title="Subscriptions" />
         <Subscriptions />
-        <Divider />
         <SideBarHeader title="movies from youtube" />
         <SideBarItem label="Movies and Shows" icon="film" />
         <Divider />
         <SideBarItem label="Report history" icon="flag" />
         <SideBarItem label="Help" icon="help circle" />
         <SideBarItem label="Send feedback" icon="comment" />
+        <Divider />
+        <SideBarFooter />
       </Menu>
     );
   }
