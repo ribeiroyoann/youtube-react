@@ -19,10 +19,7 @@ export function SideBarFooter() {
         <div>All prices include VAT</div>
       </div>
       <div className="footer-block">
-        <div>
-          © Productioncoder.com - A Youtube clone for educational purposes under
-          fair use.
-        </div>
+        <div>Youtube clone in react</div>
       </div>
     </React.Fragment>
   );

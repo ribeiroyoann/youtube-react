@@ -2,6 +2,7 @@ import React from "react";
 import { Image, Menu, Form, Input, Icon } from "semantic-ui-react";
 import "./HeaderNav.scss";
 import logo from "../../assets/images/logo.jpg";
+import ytlogo from "../../assets/images/youtube.png";
 
 export class HeaderNav extends React.Component {
   render() {
