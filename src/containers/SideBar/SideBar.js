@@ -6,26 +6,28 @@ import SideBarHeader from "./SideBarHeader/SideBarHeader";
 import SideBarFooter from "./SideBarFooter/SideBarFooter";
 import { Subscriptions } from "./Subscriptions/Subscriptions";
 
+const str = 'Vidéos "J\'aime"'; // to replace
+
 export class SideBar extends React.Component {
   render() {
     return (
       <Menu borderless vertical stackable fixed="left" className="side-nav">
-        <SideBarItem highlight={true} label="Home" icon="home" />
-        <SideBarItem label="Trending" icon="fire" />
-        <SideBarItem label="Followers" icon="spy" />
+        <SideBarItem highlight={true} label="Acceuil" icon="home" />
+        <SideBarItem label="Tendances" icon="fire" />
+        <SideBarItem label="Abonnements" icon="spy" />
         <Divider />
-        <SideBarHeader title="Library" />
-        <SideBarItem label="History" icon="history" />
-        <SideBarItem label="Watch later" icon="clock" />
-        <SideBarItem label="Liked videos" icon="thumbs up" />
+        <SideBarHeader title="Bibliothèque" />
+        <SideBarItem label="Historique" icon="history" />
+        <SideBarItem label="À regarder plus tard" icon="clock" />
+        <SideBarItem label={str} icon="thumbs up" />
         <Divider />
         <Subscriptions />
-        <SideBarHeader title="movies from youtube" />
-        <SideBarItem label="Movies and Shows" icon="film" />
+        <SideBarHeader title="Autre contenus youtubes" />
+        <SideBarItem label="Films et TV" icon="film" />
         <Divider />
-        <SideBarItem label="Report history" icon="flag" />
-        <SideBarItem label="Help" icon="help circle" />
-        <SideBarItem label="Send feedback" icon="comment" />
+        <SideBarItem label="Historique des signalements" icon="flag" />
+        <SideBarItem label="Aide" icon="help circle" />
+        <SideBarItem label="Envoyer des commentaires" icon="comment" />
         <Divider />
         <SideBarFooter />
       </Menu>

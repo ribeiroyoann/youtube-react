@@ -3,6 +3,9 @@
 .sidebar-item {
   background: #f5f5f5;
   span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     i.icon {
       margin-right: 20px;
       color: $grey;
