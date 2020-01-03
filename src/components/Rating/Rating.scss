@@ -1,0 +1,25 @@
+.rating {
+  display: inline-grid;
+  grid-template: auto auto / max-content max-content;
+  column-gap: 16px;
+  grid-row-gap: 4px;
+
+  .thumbs-up {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+  }
+
+  .thumbs-down {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+  }
+
+  .progress {
+    grid-row: 2 / 3;
+    grid-column: 1 / span 2;
+
+    &.ui.progress:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
