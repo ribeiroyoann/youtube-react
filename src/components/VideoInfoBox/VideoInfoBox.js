@@ -1,6 +1,6 @@
 import React from "react";
 import "./VideoInfoBox.scss";
-import { Image, Button, Divider } from "semantic-ui-react";
+import { Image, Button } from "semantic-ui-react";
 
 export class VideoInfoBox extends React.Component {
   constructor(props) {

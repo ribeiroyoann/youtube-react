@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, Menu, Form, Input, Icon } from "semantic-ui-react";
 import "./HeaderNav.scss";
-import logo from "../../assets/images/logo.jpg";
+// import logo from "../../assets/images/logo.jpg";
 import ytlogo from "../../assets/images/youteub1.png";
 import { Link } from "react-router-dom";
 
