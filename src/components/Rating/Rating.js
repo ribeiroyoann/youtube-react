@@ -1,28 +1,35 @@
 import React from "react";
 import "./Rating.scss";
 import { Icon, Progress } from "semantic-ui-react";
+import { abbrNum } from "../../services/number-format";
 
 export function Rating(props) {
-  let progress = null;
+  let rating = null;
+  let likeCount = props.likeCount !== 0 ? props.likeCount : null;
+  let dislikeCount = null;
 
   if (props.likeCount && props.dislikeCount) {
-    const percent =
-      (100 * Number(props.likeCount)) /
-      (Number(props.likeCount) + Number(props.dislikeCount));
-    console.log(percent);
-    progress = <Progress className="progress" percent={percent} size="tiny" />;
+    const amountLikes = parseFloat(props.likeCount);
+    const amountDislikes = parseFloat(props.dislikeCount);
+    const percentagePositiveRatings =
+      100.0 * (amountLikes / (amountLikes + amountDislikes));
+
+    // Now that we have calculated the percentage, we bring the numbers into a better readable format
+    likeCount = abbrNum(amountLikes, 1);
+    dislikeCount = abbrNum(amountDislikes, 1);
+    rating = <Progress percent={percentagePositiveRatings} size="tiny" />;
   }
   return (
     <div className="rating">
-      <div className="thumbs-up">
-        <Icon name="thumbs outline up"></Icon>
-        <span>{props.likeCount}</span>
+      <div>
+        <Icon name="thumbs outline up" />
+        <span>{likeCount}</span>
       </div>
-      <div className="thumbs-down">
-        <Icon name="thumbs outline down"></Icon>
-        <span>{props.dislikeCount}</span>
+      <div>
+        <Icon name="thumbs outline down" />
+        <span>{dislikeCount}</span>
       </div>
-      {progress}
+      {rating}
     </div>
   );
 }

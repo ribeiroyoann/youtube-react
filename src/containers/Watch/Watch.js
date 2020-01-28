@@ -1,21 +1,88 @@
 import React from "react";
-import "./Watch.scss";
-import { Video } from "../../components/Video/Video";
-import { RelatedVideos } from "../../components/RelatedVideos/RelatedVideos";
-import { VideoMetadata } from "../../components/VideoMetadata/VideoMetadata";
-import { VideoInfoBox } from "../../components/VideoInfoBox/VideoInfoBox";
-import { Comments } from "../Comments/Comments";
+import WatchContent from "./WatchContent/WatchContent";
+
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { getYoutubeLibraryLoaded } from "../../store/reducers/api";
+import * as watchActions from "../../store/actions/watch";
+import * as commentActions from "../../store/actions/comment";
+import { withRouter } from "react-router-dom";
+import { getSearchParam } from "../../services/url";
+import { getChannelId } from "../../store/reducers/videos";
+import { getCommentNextPageToken } from "../../store/reducers/comment";
 
 export class Watch extends React.Component {
   render() {
+    const videoId = this.getVideoId();
     return (
-      <div className="watch-grid">
-        <Video className="video" id="u8bHjdljyLw" />
-        <RelatedVideos className="related-videos" />
-        <VideoMetadata className="metadata" viewCount={1234} />
-        <Comments className="comments" amountComments={1234} />
-        <VideoInfoBox className="video-info-box" />
-      </div>
+      <WatchContent
+        videoId={videoId}
+        channelId={this.props.channelId}
+        bottomReachedCallback={this.fetchMoreComments}
+        nextPageToken={this.props.nextPageToken}
+      />
     );
   }
+
+  componentDidMount() {
+    if (this.props.youtubeLibraryLoaded) {
+      this.fetchWatchContent();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.youtubeLibraryLoaded !== prevProps.youtubeLibraryLoaded) {
+      this.fetchWatchContent();
+    }
+  }
+
+  fetchMoreComments = () => {
+    if (this.props.nextPageToken) {
+      this.props.fetchCommentThread(
+        this.getVideoId(),
+        this.props.nextPageToken
+      );
+    }
+  };
+
+  getVideoId() {
+    return getSearchParam(this.props.location, "v");
+  }
+
+  fetchWatchContent() {
+    const videoId = this.getVideoId();
+    if (!videoId) {
+      this.props.history.push("/");
+    }
+    console.log(videoId, this.props.channelId);
+    this.props.fetchWatchDetails(videoId, this.props.channelId);
+  }
+
+  fetchMoreComments = () => {
+    if (this.props.nextPageToken) {
+      this.props.fetchCommentThread(
+        this.getVideoId(),
+        this.props.nextPageToken
+      );
+    }
+  };
 }
+
+function mapStateToProps(state, props) {
+  return {
+    youtubeLibraryLoaded: getYoutubeLibraryLoaded(state),
+    channelId: getChannelId(state, props.location, "v"),
+    nextPageToken: getCommentNextPageToken(state, props.location)
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  const fetchWatchDetails = watchActions.details.request;
+  const fetchCommentThread = commentActions.thread.request;
+  return bindActionCreators(
+    { fetchWatchDetails, fetchCommentThread },
+    dispatch
+  );
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Watch));

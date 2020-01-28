@@ -12,8 +12,8 @@ export class SideBar extends React.Component {
   render() {
     return (
       <Menu borderless vertical stackable fixed="left" className="side-nav">
-        <SideBarItem highlight={true} label="Acceuil" icon="home" />
-        <SideBarItem label="Tendances" icon="fire" />
+        <SideBarItem path="/" highlight={true} label="Acceuil" icon="home" />
+        <SideBarItem path="/feed/trending" label="Tendances" icon="fire" />
         <SideBarItem label="Abonnements" icon="spy" />
         <Divider />
         <SideBarHeader title="Bibliothèque" />

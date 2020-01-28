@@ -7,15 +7,19 @@ import { Divider } from "semantic-ui-react";
 
 export class Comments extends React.Component {
   render() {
+    if (!this.props.comments) {
+      return <div />;
+    }
+
+    const comments = this.props.comments.map(comment => {
+      return <Comment comment={comment} key={comment.id} />;
+    });
     return (
       <div>
         <Divider />
         <CommentsHeader amountComments={this.props.amountComments} />
-        <AddComment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
+        <AddComment key="add-comment" />
+        {comments}
       </div>
     );
   }

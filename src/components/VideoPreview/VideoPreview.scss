@@ -20,8 +20,15 @@
     line-height: 1.4em;
     max-height: 2.8em;
   }
+  .view-and-time {
+    margin-bottom: 10px;
+  }
 
   .semi-bold {
+    &.expanded {
+      font-weight: 400;
+      font-size: 1.3rem;
+    }
     font-weight: 600;
   }
 }
@@ -31,6 +38,9 @@
   grid: 118px auto / 210px;
 
   &.horizontal {
+    &.expanded {
+      grid: auto / 246px auto;
+    }
     grid: auto / 210px auto;
     grid-column-gap: 5px;
     .video-info {
