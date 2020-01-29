@@ -1,11 +1,13 @@
 import { SEARCH_FOR_VIDEOS } from "../actions/search";
-import { SUCCESS, REQUEST } from "../actions";
+import { REQUEST, SUCCESS } from "../actions";
 
 export default function(state = {}, action) {
   switch (action.type) {
     case SEARCH_FOR_VIDEOS[SUCCESS]:
-      return reduceSearchForVideos(action.response, action.searchQuery);
+      return reduceSearchForVideos(action.response, action.searchQuery, state);
     case SEARCH_FOR_VIDEOS[REQUEST]:
+      // delete the previous search because otherwise our component flickers and shows the
+      // previous search results before it shows
       return action.nextPageToken ? state : {};
     default:
       return state;

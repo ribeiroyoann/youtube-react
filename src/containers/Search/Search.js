@@ -10,6 +10,7 @@ import * as searchActions from "../../store/actions/search";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { getSearchParam } from "../../services/url";
+import { withRouter } from "react-router-dom";
 
 class Search extends React.Component {
   render() {
@@ -26,17 +27,11 @@ class Search extends React.Component {
     return getSearchParam(this.props.location, "search_query");
   }
 
-  searchForVideos() {
-    const searchQuery = this.getSearchQuery();
-    if (this.props.youtubeApiLoaded) {
-      this.props.searchForVideos(searchQuery);
-    }
-  }
-
   componentDidMount() {
     if (!this.getSearchQuery()) {
       this.props.history.push("/");
     }
+    console.log("SEARCH");
     this.searchForVideos();
   }
 
@@ -45,13 +40,20 @@ class Search extends React.Component {
       this.searchForVideos();
     }
   }
+
+  searchForVideos() {
+    const searchQuery = this.getSearchQuery();
+    if (this.props.youtubeApiLoaded) {
+      this.props.searchForVideos(searchQuery);
+    }
+  }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
   return {
     youtubeApiLoaded: getYoutubeLibraryLoaded(state),
-    searchResults: getSearchResults(state),
-    nextPageToken: getSearchNextPageToken(state)
+    searchResults: getSearchResults(state, props.location.search),
+    nextPageToken: getSearchNextPageToken(state, props.location.search)
   };
 }
 
@@ -60,4 +62,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ searchForVideos }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search));
