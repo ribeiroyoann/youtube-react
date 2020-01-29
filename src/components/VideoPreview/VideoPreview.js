@@ -39,10 +39,14 @@ const timeAgo = new TimeAgo("en-US");
 export class VideoPreview extends React.Component {
   render() {
     const { video } = this.props; // ES6 destructuring
+    if (!video) {
+      return <div />;
+    }
     const FormattedViewsTime = VideoPreview.getFormattedViewsAndTime(video);
-    const FormattedDuration = getVideoDurationString(
-      video.contentDetails.duration
-    );
+    const duration = video.contentDetails
+      ? video.contentDetails.duration
+      : null;
+    const FormattedDuration = getVideoDurationString(duration);
     const expanded = this.props.expanded ? "expanded" : null;
     const description = this.props.expanded ? video.snippet.description : null;
 

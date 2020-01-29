@@ -71,7 +71,7 @@ export class HeaderNav extends React.Component {
 
   onSubmit = () => {
     const escapedSearchQuery = encodeURI(this.state.query);
-    this.props.history.push(`/search?search_query=${escapedSearchQuery}`);
+    this.props.history.push(`/results?search_query=${escapedSearchQuery}`);
   };
 }
 

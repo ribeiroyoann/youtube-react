@@ -59,8 +59,6 @@ export class Trending extends React.Component {
 
   fetchMoreVideos = () => {
     const { nextPageToken } = this.props;
-    console.log(nextPageToken);
-
     if (this.props.youtubeLibraryLoaded && nextPageToken) {
       console.log("fetch");
       this.props.fetchMostPopularVideos(1, true, nextPageToken);
