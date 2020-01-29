@@ -8,7 +8,8 @@ export class Subscriptions extends React.Component {
     return (
       <React.Fragment>
         <SideBarHeader title="Abonnements" />
-        <Subscription label="PNL" amountNewVideos={3} />
+        <Subscription label="Yoann" amountNewVideos={1} />
+        <Subscription label="Computerphile" amountNewVideos={3} />
         <Subscription label="Agathe" amountNewVideos={1} broadcasting />
         <Divider />
       </React.Fragment>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Subscription.scss";
 import { Menu, Image, Icon } from "semantic-ui-react";
-import avatar from "../../../../assets/images/adkhey.png";
+import avatar from "../../../../assets/images/avatar.png";
 
 export function Subscription(props) {
   let rightElement = null;

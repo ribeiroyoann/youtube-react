@@ -2,7 +2,7 @@ import React from "react";
 import { Image, Menu, Form, Input, Icon } from "semantic-ui-react";
 import "./HeaderNav.scss";
 // import logo from "../../assets/images/logo.jpg";
-import ytlogo from "../../assets/images/youteub1.png";
+import logo from "../../assets/images/yt_logo_rgb_light.png";
 import { Link, withRouter } from "react-router-dom";
 
 export class HeaderNav extends React.Component {
@@ -18,7 +18,7 @@ export class HeaderNav extends React.Component {
       <Menu borderless className="top-menu" fixed="top">
         <Menu.Item header className="logo">
           <Link to="/">
-            <Image src={ytlogo} size="tiny" />
+            <Image src={logo} size="tiny" />
           </Link>
         </Menu.Item>
         <Menu.Menu className="nav-container">
