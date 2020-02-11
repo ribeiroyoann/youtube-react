@@ -10,4 +10,6 @@
 
 
 
-![screenshot](https://imgur.com/a/U98sagE)
+![screenshot](https://i.imgur.com/QjW2Z5N.png)
+![screenshot](https://i.imgur.com/07Hmw1i.png)
+![screenshot](https://i.imgur.com/fq5kKQe.png)
